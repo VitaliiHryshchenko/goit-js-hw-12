@@ -3,10 +3,9 @@ import axios from 'axios';
 export const searchParams = {
   key: '46019224-0ece95bdc3a0496b8437567d7',
   q: '',
-  image_type: 'photo',
+  imageType: 'photo',
   orientation: 'horizontal',
   safesearch: true,
-  per_page: 40,
   page: 1,
   per_page: 15,
   maxPage: 0,

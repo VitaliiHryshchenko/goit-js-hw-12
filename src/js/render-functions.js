@@ -2,21 +2,21 @@ import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
 export const lightbox = new SimpleLightbox('.gallery a', {
-  captionsData: 'alt',
   captionDelay: 250,
-  captionsPosition: 'bottom',
+  captionPosition: 'bottom',
+  captionsData: 'alt',
 });
 
 export const refs = {
   searchForm: document.querySelector('.js-search-form'),
   gallery: document.querySelector('.js-gallery'),
-  loadMoreBtn: document.querySelector('.js-load-more-button'),
   loader: document.querySelector('.js-loader'),
+  loadMoreBtn: document.querySelector('.js-load-more-button'),
 };
+
 export function showLoader() {
   refs.loader.classList.remove('is-hidden');
 }
-
 export function hideLoader() {
   refs.loader.classList.add('is-hidden');
 }
@@ -26,7 +26,8 @@ export function showButton() {
 export function hideButton() {
   refs.loadMoreBtn.classList.add('is-hidden');
 }
-export function renderMarkup(hits) {
+
+export function renderPictures(hits) {
   return hits
     .map(
       ({
@@ -37,8 +38,7 @@ export function renderMarkup(hits) {
         views,
         comments,
         downloads,
-      }) =>
-        `
+      }) => `
     <li class="gallery-card">
         <a class="gallery-link" href="${largeImageURL}">
           <img
@@ -74,12 +74,15 @@ export function renderMarkup(hits) {
     )
     .join('');
 }
-export function scrollGalleryCard() {
-  const gallaryCardHeight = document
+
+export function scrollGalerryCard() {
+  const galleryCardHeight = document
     .querySelector('.gallery-card')
     .getBoundingClientRect().height;
+
   window.scrollBy({
-    top: Math.ceil(gallaryCardHeight * 2),
+    top: Math.ceil(galleryCardHeight * 2),
+    left: Math.ceil(galleryCardHeight * 2),
     behavior: 'smooth',
   });
 }

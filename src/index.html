@@ -12,6 +12,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./css/styles.css" />
+    <script type="module" defer src="./main.js"></script>
   </head>
   <body>
     <form class="search-form js-search-form">
@@ -23,12 +24,13 @@
       />
       <button class="search-button" type="submit">Search</button>
     </form>
+
     <section class="container">
       <ul class="gallery js-gallery"></ul>
-      <button class="load-more-button js-load-more-button">Load more</button>
-      <span class="js-loader">Loding images, please wait</span>
+      <button class="load-more-button js-load-more-button" type="button">
+        Load more
+      </button>
+      <span class="js-loader">Loading images, please wait... </span>
     </section>
-
-    <script type="module" defer src="./main.js"></script>
   </body>
 </html>
