@@ -46,7 +46,8 @@ async function onSearch(event) {
     if (hits.length > 0 && hits.length !== totalHits) {
       showButton();
       refs.loadMoreBtn.addEventListener('click', handlerLoadMore);
-    } else if (hits.length === totalHits) {
+    } else if (hits.length <= searchParams.per_page && hits.length > 0) {
+      endSearchMessage();
       hideButton();
     } else if (hits.length === 0) {
       noImagesError();
@@ -105,6 +106,6 @@ function noRequestError() {
 function endSearchMessage() {
   iziToast.info({
     message: "We're sorry, but you've reached the end of search results.",
-    position: 'center',
+    position: 'topRight',
   });
 }
