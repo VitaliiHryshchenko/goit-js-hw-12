@@ -22,11 +22,12 @@ async function onSearch(event) {
   event.preventDefault();
 
   refs.gallery.innerHTML = '';
+  searchParams.page = 1;
 
   const form = event.currentTarget;
   searchParams.q = form.elements.searchtext.value.trim();
 
-  if (!searchParams.q) {
+  if (searchParams.q === '') {
     noRequestError();
     hideButton();
     return;
@@ -45,8 +46,11 @@ async function onSearch(event) {
     if (hits.length > 0 && hits.length !== totalHits) {
       showButton();
       refs.loadMoreBtn.addEventListener('click', handlerLoadMore);
+    } else if (hits.length === totalHits) {
+      hideButton();
     } else if (hits.length === 0) {
       noImagesError();
+      hideButton();
     }
   } catch (error) {
     noImagesError;
@@ -57,6 +61,7 @@ async function onSearch(event) {
 
 async function handlerLoadMore() {
   searchParams.page += 1;
+
   hideButton();
   showLoader();
 
